@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Http;
+namespace Tests\Feature\Http;
 
 use App\Http\ProductsApiClient;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
