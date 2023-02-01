@@ -43,3 +43,5 @@ database.sqlite
 /vendor
 .env
 database.sqlite
+
+.vscode
