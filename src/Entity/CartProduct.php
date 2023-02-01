@@ -2,10 +2,9 @@
 // src/Controller/Products.php
 namespace App\Entity;
 
-use App\Traits\CreateFromArray;
 use App\Traits\Fillable;
 
-class Product
+class CartProduct
 {
     use Fillable;
 
@@ -15,14 +14,14 @@ class Product
             'productId',
             'productName',
             'unitPrice',
-            'imageUrl',
-            'quantity',
+            'qty',
+            'id',
         ];
     }
 
     public $productId;
     public $productName;
     public $unitPrice;
-    public $imageUrl;
-    public $quantity;
+    public $qty;
+    public $id;
 }
