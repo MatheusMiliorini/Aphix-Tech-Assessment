@@ -1,0 +1,6 @@
+index:
+    path: /
+    controller: App\Controller\ProductsController::index
+checkout:
+    path: /checkout
+    controller: App\Controller\CheckoutController::index
