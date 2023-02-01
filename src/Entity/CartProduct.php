@@ -24,4 +24,8 @@ class CartProduct
     public $unitPrice;
     public $qty;
     public $id;
+    // Calculations
+    public $netPrice;
+    public $vatPrice;
+    public $totalPrice;
 }
