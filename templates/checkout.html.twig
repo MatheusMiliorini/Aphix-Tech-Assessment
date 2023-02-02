@@ -1,0 +1,65 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Checkout {% endblock %}
+
+{% block body %}
+
+<h1>Products In Cart</h1>
+
+<section class="card-container">
+    <table class="table-border">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Net Price</th>
+                <th>VAT Amount</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.productName }}</td>
+                <td class="align-right">{{ product.qty|number_format(2) }}</td>
+                <td class="align-right">&euro;{{ product.netPrice|number_format(2) }}</td>
+                <td class="align-right">&euro;{{ product.vatPrice|number_format(2) }}</td>
+                <td class="align-right">&euro;{{ product.totalPrice|number_format(2) }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="5">&nbsp;</td>
+            </tr>
+            <tr>
+                <td><b>Total</b></td>
+                <td></td>
+                <td class="align-right">&euro;{{ netTotal|number_format(2) }}</td>
+                <td class="align-right">&euro;{{ vatTotal|number_format(2) }}</td>
+                <td class="align-right">&euro;{{ total|number_format(2) }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</section>
+
+{% endblock %}
+
+{% block stylesheets %}
+{# https://stackoverflow.com/questions/25658503/twig-append-content-to-block #}
+{{ parent() }}
+<style>
+    .align-right {
+        text-align: right;
+    }
+
+    .table-border {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    .table-border thead tr th,
+    .table-border tbody tr td {
+        border: 1px solid black;
+    }
+</style>
+{% endblock %}
