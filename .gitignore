@@ -45,3 +45,4 @@ database.sqlite
 database.sqlite
 
 .vscode
+coverage
