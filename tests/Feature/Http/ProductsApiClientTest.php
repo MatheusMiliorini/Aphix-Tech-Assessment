@@ -3,6 +3,7 @@
 namespace Tests\Feature\Http;
 
 use App\Http\ProductsApiClient;
+use App\Services\PriceCalculator;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class ProductsApiClientTest extends KernelTestCase
@@ -41,5 +42,23 @@ class ProductsApiClientTest extends KernelTestCase
         $this->assertIsNumeric($product->unitPrice);
         $this->assertIsNumeric($product->qty);
         $this->assertIsNumeric($product->id);
+    }
+
+    public function test_cart_sum()
+    {
+        self::bootKernel();
+        $container = static::getContainer();
+        /** @var ProductsApiClient */
+        $productsApi = $container->get(ProductsApiClient::class);
+        $priceCalculator = new PriceCalculator();
+        $products = $productsApi->fetchCart();
+        $netTotal = $vatTotal = $total = 0;
+        foreach ($products as $product) {
+            $priceCalculator->calculate($product);
+            $netTotal += $product->netPrice;
+            $vatTotal += $product->vatPrice;
+            $total    += $product->totalPrice;
+        }
+        $this->assertEquals($netTotal + $vatTotal, $total);
     }
 }
